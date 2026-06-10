@@ -16,49 +16,50 @@ public class FileSystem {
     }
     //cd
     public String cd(String target){
-        switch(target){
-            case "/":
+        return switch (target) {
+            case "/" -> {
                 history.clear();
                 currentDir = root;
-                return "Now at: /";
-            case " ..":
+                yield "Now at: /";
+            }
+            case " .." -> {
                 if (history.isEmpty())
-                    return "Alredy at root. Cannot go up.";
+                    yield "Alredy at root. Cannot go up.";
                 currentDir = history.pop();
-                return "Now at: " + getCurrentPath();
-            default:
+                yield "Now at: " + getCurrentPath();
+            }
+            default -> {
                 FileSystemNode found = currentDir.findChild(target);
-                if (found ==null)
-                   return "cd:not such directory:" +target;
-                if(!found.isDirectory())
-                   return "cd: not a directory: " +target;
-                history.push (currentDir);
+                if (found == null)
+                    yield "cd:not such directory:" + target;
+                if (!found.isDirectory())
+                    yield "cd: not a directory: " + target;
+                history.push(currentDir);
                 currentDir = (DirectoryNode) found;
-                return "Now at:" + getCurrentPath();
-        }
+                yield "Now at:" + getCurrentPath();
+            }
+        };
     }
         //ls
-        public String ls(){
-        List<FileSystemNode> children = currentDir.getChildren();
-        if (children.isEmpty()) return "(empty directory)";
+        public String ls() {
+    List<FileSystemNode> children = currentDir.getChildren();
+    if (children.isEmpty()) return "(empty directory)";
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Contents of").append(getCurrentPath()).append(":\n");
-        sb.append(String.format("%-28s %s%n", "NAME" , "SIZE"));
-        sb.append(" "+"-".repeat(42) + "\n");
+    StringBuilder sb = new StringBuilder();
+    sb.append("Contents of ").append(getCurrentPath()).append(":\n");
+    sb.append(String.format("  %-28s  %s%n", "NAME", "SIZE"));
+    sb.append("  ").append("-".repeat(42)).append("\n");
 
-        for (FileSystemNode child : children){
+    for (FileSystemNode child : children) {
         if (child.isDirectory()) {
-        sb.append(String.format("[DIR] %-24s%n", child.getName() + "/"));
-
-        }else {
-            sb.append(String.format("[FILE] %-24 %s%n", child.getName(),FileNode.formatSize(child.getSize())));
-            }
+            sb.append(String.format("  [DIR]  %-26s%n", child.getName() + "/"));
+        } else {
+            sb.append(String.format("  [FILE] %-26s  %s%n",
+                    child.getName(), FileNode.formatSize(child.getSize())));
         }
-            return sb.toString().stripTrailing();
-
-        }
-            // ── size ────────────────────────────────────────────────────────
+    }
+    return sb.toString().stripTrailing();
+}// ── size ────────────────────────────────────────────────────────
     public String size() {
         long total = currentDir.getSize();
         return String.format("Size of '%s': %s  (%,d bytes)",
