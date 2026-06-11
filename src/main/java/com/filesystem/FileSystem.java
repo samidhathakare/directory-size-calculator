@@ -24,14 +24,14 @@ public class FileSystem {
             }
             case ".." -> {
                 if (history.isEmpty())
-                    yield "Alredy at root. Cannot go up.";
+                    yield "Already at root. Cannot go up.";
                 currentDir = history.pop();
                 yield "Now at: " + getCurrentPath();
             }
             default -> {
                 FileSystemNode found = currentDir.findChild(target);
                 if (found == null)
-                    yield "cd:not such directory:" + target;
+                    yield "cd: no such directory: " + target;
                 if (!found.isDirectory())
                     yield "cd: not a directory: " + target;
                 history.push(currentDir);
