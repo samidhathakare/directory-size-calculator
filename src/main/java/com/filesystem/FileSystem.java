@@ -22,7 +22,7 @@ public class FileSystem {
                 currentDir = root;
                 yield "Now at: /";
             }
-            case " .." -> {
+            case ".." -> {
                 if (history.isEmpty())
                     yield "Alredy at root. Cannot go up.";
                 currentDir = history.pop();
