@@ -1,5 +1,7 @@
 # Directory Size Calculator
 
+> Author - Samidha Thakre
+
 A small Java CLI that lets you navigate a virtual file system and check directory sizes. Built mostly to practice tree traversal and OOP design.
 
 ## What it does
