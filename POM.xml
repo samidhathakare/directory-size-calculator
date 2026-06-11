@@ -44,6 +44,17 @@
                    <mainClass>${mainClass}</mainClass>
                </configuration>
            </plugin>
+           <!-- Format code: mvn spotless:apply -->
+           <plugin>
+               <groupId>com.diffplug.spotless</groupId>
+               <artifactId>spotless-maven-plugin</artifactId>
+               <version>2.43.0</version>
+               <configuration>
+                   <java>
+                       <eclipse/>
+                   </java>
+               </configuration>
+           </plugin>
            <!-- Build a JAR: mvn package -->
            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
