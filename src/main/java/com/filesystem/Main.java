@@ -32,6 +32,7 @@ public class Main {
 				case "ls" -> System.out.println(fs.ls());
 				case "size" -> System.out.println(fs.size());
 				case "pwd" -> System.out.println(fs.getCurrentPath());
+				case "mkdir" -> System.out.println(fs.mkdir(arg));
 				case "help" -> printHelp();
 				case "exit", "quit" -> {
 					System.out.println("Goodbye!");
@@ -57,6 +58,7 @@ public class Main {
 		System.out.println("  cd <name>   Move into a subdirectory");
 		System.out.println("  cd ..       Move up to parent directory");
 		System.out.println("  cd /        Jump back to root");
+		System.out.println("  mkdir <name> Create new directory");
 		System.out.println("  size        Recursive total size of current dir");
 		System.out.println("  pwd         Print current path");
 		System.out.println("  help        Show this help message");
