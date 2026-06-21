@@ -20,8 +20,9 @@ public class FileSystem {
 		if (this.currentDir.findChild(newDir) != null){
 			return "Directory alredy exist";
 		}
-		// create new dir
-		return "";
+		DirectoryNode newDirNode = new DirectoryNode(newDir) {};
+		this.currentDir.addChild(newDirNode);
+		return "Directory created.";
 	}
 	public String cd(String target) {
 		return switch (target) {
