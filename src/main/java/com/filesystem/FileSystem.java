@@ -14,7 +14,16 @@ public class FileSystem {
 		this.root = root;
 		this.currentDir = root;
 	}
-
+    public String mkdir (String newDir){
+		if(newDir.isEmpty())
+			return "Directory name missing";
+		if (this.currentDir.findChild(newDir) != null){
+			return "Directory alredy exist";
+		}
+		DirectoryNode newDirNode = new DirectoryNode(newDir) {};
+		this.currentDir.addChild(newDirNode);
+		return "Directory created.";
+	}
 	public String cd(String target) {
 		return switch (target) {
 			case "/" -> {
