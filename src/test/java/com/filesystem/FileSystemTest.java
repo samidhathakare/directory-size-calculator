@@ -32,18 +32,15 @@ class FileSystemTest {
 
 	@Test
 	void directoryNode_isDirectory() {
-		assertTrue(new DirectoryNode("d") {
-		}.isDirectory());
+		assertTrue(new DirectoryNode("d").isDirectory());
 	}
 	@Test
 	void directoryNode_emptyDirSizeIsZero() {
-		assertEquals(0, new DirectoryNode("d") {
-		}.getSize());
+		assertEquals(0, new DirectoryNode("d").getSize());
 	}
 	@Test
 	void directoryNode_sizeIsSumOfChildren() {
-		DirectoryNode d = new DirectoryNode("d") {
-		};
+		DirectoryNode d = new DirectoryNode("d");
 		d.addChild(new FileNode("a", 100));
 		d.addChild(new FileNode("b", 200));
 		d.addChild(new FileNode("c", 300));
@@ -51,11 +48,9 @@ class FileSystemTest {
 	}
 	@Test
 	void directoryNode_recursiveSizeAcrossLevels() {
-		DirectoryNode root = new DirectoryNode("root") {
-		};
+		DirectoryNode root = new DirectoryNode("root");
 		root.addChild(new FileNode("f1", 100));
-		DirectoryNode sub = new DirectoryNode("sub") {
-		};
+		DirectoryNode sub = new DirectoryNode("sub");
 		sub.addChild(new FileNode("f2", 200));
 		sub.addChild(new FileNode("f3", 300));
 		root.addChild(sub);
@@ -101,8 +96,7 @@ class FileSystemTest {
 	}
 	@Test
 	void ls_emptyDirMessage() {
-		assertTrue(new FileSystem(new DirectoryNode("e") {
-		}).ls().contains("empty"));
+		assertTrue(new FileSystem(new DirectoryNode("e")).ls().contains("empty"));
 	}
 	@Test
 	void size_outputContainsDirName() {

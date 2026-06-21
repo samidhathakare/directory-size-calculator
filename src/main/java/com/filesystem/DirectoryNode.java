@@ -3,7 +3,7 @@ package com.filesystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DirectoryNode implements FileSystemNode {
+public class DirectoryNode implements FileSystemNode {
 
 	private final String name;
 	private final List<FileSystemNode> children = new ArrayList<>();
