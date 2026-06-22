@@ -7,7 +7,7 @@ public class FileNode implements FileSystemNode {
 		if (name == null || name.isBlank())
 			throw new IllegalArgumentException("File name cannot be empty.");
 		if (size < 0)
-			throw new IllegalArgumentException("File name cannot be empty.");
+			throw new IllegalArgumentException("File size cannot be less than 0.");
 		this.name = name;
 		this.size = size;
 	}
